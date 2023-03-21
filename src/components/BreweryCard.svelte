@@ -8,6 +8,7 @@
     CardText,
     CardTitle,
   } from "sveltestrap";
+
   export let brewery: any;
 </script>
 
@@ -18,8 +19,15 @@
   <CardBody>
     <CardSubtitle>{brewery.Enhet}</CardSubtitle>
     <CardText>
-      Temp: {brewery.Temperatur}
-      Fuktighet: {brewery.Fughtighet}
+      <p>
+        Temp: {brewery.Temperatur}
+      </p>
+      <p>
+        Fuktighet: {brewery.Fuktighet}
+      </p>
+      <p>
+        Trykk: {brewery.Lufttrykk}
+      </p>
     </CardText>
   </CardBody>
   <CardFooter>{brewery.Timestamp}</CardFooter>

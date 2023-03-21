@@ -1,15 +1,12 @@
 <script lang="ts">
-  import BreweryCard from "./BreweryCard.svelte";
-  import { Col, Container, Row, Card } from "sveltestrap";
+  import BreweryCard from "./components/BreweryCard.svelte";
+  import { Col, Container, Row } from "sveltestrap";
   import { getBreweries } from "./api/HttpClient";
-  import { onMount } from "svelte";
 
   let breweries: any[] = [];
 
-  onMount(async () => {
-    const data = await getBreweries().then((data) => data);
-    breweries = await data;
-  });
+  getBreweries()
+    .then(data => breweries = data);
 </script>
 
 <main>
