@@ -1,19 +1,36 @@
 <script lang="ts">
   import BreweryCard from "./components/BreweryCard.svelte";
-  import { Col, Container, Row } from "sveltestrap";
+  import { Col, Container, Row, Modal, Button } from "sveltestrap";
   import { getBreweries } from "./api/HttpClient";
 
   let breweries: any[] = [];
 
-    getBreweries()
-    .then((data) => {
+  let open = false;
+  const toggle = () => open = !open;
+  let highlighted;
+  const setHighlightedBeerType = (selectedBrewery) => {
+    highlighted = selectedBrewery;
+    toggle();
+  }
+
+  getBreweries().then((data) => {
       // Kanskje litt spaghetti, hehe.
       let ModifisertLufttrykk = data.map(({Lufttrykk, Timestamp, ...rest}) => ({Lufttrykk: Math.floor(Math.random() * 1501), Timestamp: Timestamp.split("T")[0], ...rest}));
       breweries = ModifisertLufttrykk
     })
+  
 </script>
 
 <main>
+  <Modal body header="Info for selected beer" isOpen={open} {toggle}>
+    <h2>BeerName: {highlighted.brewery_name}</h2>
+    <p>
+      <strong>Fuktighet:</strong> {highlighted.Humidity} 🌊
+    </p>
+    <p>
+      <strong>Trykk:</strong> {highlighted.Pressure} 💨
+    </p>
+  </Modal>
   <Container>
     <Row>
       <Col>
@@ -34,7 +51,7 @@
     <Row cols={3}>
       {#each breweries as brewery}
         <Col>
-          <BreweryCard {brewery} />
+          <BreweryCard onClick={() => setHighlightedBeerType(brewery)} {brewery} />
         </Col>
       {:else}
         <Col>
