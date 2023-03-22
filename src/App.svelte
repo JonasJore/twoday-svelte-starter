@@ -6,7 +6,11 @@
   let breweries: any[] = [];
 
   getBreweries()
-    .then(data => breweries = data);
+    .then((data) => {
+      // Kanskje litt spaghetti, hehe.
+      let ModifisertLufttrykk = data.map(({Lufttrykk,...rest}) => ({Lufttrykk: Math.floor(Math.random() * 1501),...rest}));
+      breweries = ModifisertLufttrykk
+    })
 </script>
 
 <main>

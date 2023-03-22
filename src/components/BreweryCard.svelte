@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onMount } from "svelte";
   import {
     Card,
     CardBody,
@@ -10,9 +11,17 @@
   } from "sveltestrap";
 
   export let brewery: any;
-</script>
 
-<Card class="mb-3">
+  onMount( () => {
+    
+})
+
+</script>
+<!-- 
+  , denne blir lang og stygg. Men jeg liker å leve farlig. 
+  Den sprenger egentlig på 1500, men jeg puttern på 1300 sånn at vi faktisk kan se det størsteparten av tiden
+-->
+<Card color="{brewery.Lufttrykk >= 999.00 && brewery.Lufttrykk < 1199 ? "warning" : brewery.Lufttrykk >= 1200 ? "danger" : "primary"}" class="mb-3">
   <CardHeader>
     <CardTitle>{brewery.Rom}</CardTitle>
   </CardHeader>
@@ -20,13 +29,13 @@
     <CardSubtitle>{brewery.Enhet}</CardSubtitle>
     <CardText>
       <p>
-        Temp: {brewery.Temperatur}
+        <strong>Temp:</strong> {brewery.Temperatur} 🌡️
       </p>
       <p>
-        Fuktighet: {brewery.Fuktighet}
+        <strong>Fuktighet:</strong> {brewery.Fuktighet} 🌊
       </p>
       <p>
-        Trykk: {brewery.Lufttrykk}
+        <strong>Trykk:</strong> {brewery.Lufttrykk} 💨
       </p>
     </CardText>
   </CardBody>
