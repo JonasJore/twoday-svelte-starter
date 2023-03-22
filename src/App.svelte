@@ -1,6 +1,6 @@
 <script lang="ts">
   import BreweryCard from "./components/BreweryCard.svelte";
-  import { Col, Container, Row, Modal, Button } from "sveltestrap";
+  import { Col, Container, Row, Modal } from "sveltestrap";
   import { getBreweries } from "./api/HttpClient";
 
   let breweries: any[] = [];
