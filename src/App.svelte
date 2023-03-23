@@ -15,7 +15,9 @@
 
   getBreweries().then((data) => {
       // Kanskje litt spaghetti, hehe.
-      let ModifisertLufttrykk = data.map(({Lufttrykk, Timestamp, ...rest}) => ({Lufttrykk: Math.floor(Math.random() * 1501), Timestamp: Timestamp.split("T")[0], ...rest}));
+      let ModifisertLufttrykk = data.map(({Lufttrykk, Timestamp, ...rest}) => (
+        {Lufttrykk: Math.floor(Math.random() * 1501), Timestamp: Timestamp.split("T")[0], ...rest}
+      ));
       breweries = ModifisertLufttrykk
     })
   
